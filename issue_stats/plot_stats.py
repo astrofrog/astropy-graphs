@@ -27,6 +27,11 @@ release_031 = dt(2014, 3, 4)
 release_032 = dt(2014, 5, 13)
 release_040 = dt(2014, 7, 16)
 release_041 = dt(2014, 8, 8)
+release_042 = dt(2014, 9, 2)
+release_043 = dt(2015, 1, 15)
+release_044 = dt(2015, 1, 21)
+release_100 = dt(2015, 2, 19)
+release_101 = dt(2015, 3, 5)
 
 
 def to_year_fraction(date):
@@ -80,9 +85,9 @@ ax = fig.add_subplot(1,1,1)
 ax.plot(created, created_n, color='red', lw=2, label='total')
 ax.plot(closed, closed_n, color='green', lw=2, label='closed')
 ax.plot(dates, total, color='blue', lw=2, label='open')
-ax.xaxis.set_ticks([2011, 2012, 2013, 2014])
+ax.xaxis.set_ticks([2011, 2012, 2013, 2014, 2015])
 ax.legend(loc=2, fontsize=11)
-ax.xaxis.set_ticklabels(['2011', '2012', '2013', '2014'])
+ax.xaxis.set_ticklabels(['2011', '2012', '2013', '2014', '2015'])
 
 upper = np.max(created_n)
 
@@ -108,10 +113,17 @@ ax.axvline(to_year_fraction(release_040), color='k', lw=2)
 ax.text(to_year_fraction(release_040) - 0.01, upper, '0.4', rotation=90, ha='right', size=10)
 
 ax.axvline(to_year_fraction(release_041), color='k', alpha=0.3)
+ax.axvline(to_year_fraction(release_042), color='k', alpha=0.3)
+ax.axvline(to_year_fraction(release_043), color='k', alpha=0.3)
+ax.axvline(to_year_fraction(release_044), color='k', alpha=0.3)
 
+
+ax.axvline(to_year_fraction(release_100), color='k', lw=2)
+ax.text(to_year_fraction(release_100) - 0.01, upper, '1.0', rotation=90, ha='right', size=10)
+ax.axvline(to_year_fraction(release_101), color='k', alpha=0.3)
 
 ax.set_xlabel("Time")
 ax.set_ylabel("Number of issues")
 ax.set_title("Astropy issues")
-ax.set_xlim(2011.75, 2015.)
+ax.set_xlim(2011.75, 2015.25)
 fig.savefig('issue_stats.png', dpi=150)
