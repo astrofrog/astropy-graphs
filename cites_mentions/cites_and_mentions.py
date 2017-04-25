@@ -130,14 +130,17 @@ if __name__ == "__main__":
     ax = fig.add_subplot(1,1,1)
 
     ax.set_title("Fraction of python papers mentioning astropy", size=10)
-    ax.plot(years['Python'], np.array(values['Astropy'],
-                                      dtype=float)/np.array(values['Python'],
-                                                            dtype=float), '.-',
+    astropy_fraction = np.array(values['Astropy'],
+                                dtype=float)/np.array(values['Python'],
+                                                      dtype=float)
+    ax.plot(years['Python'][years['Python']>2000],
+            astropy_fraction[years['Python']>2000], '.-',
             label='Astropy/Python')
 
     #ax.legend(fontsize=8, loc=2)
     # can't show this year b/c it isn't normalized
     ax.set_xlim(1970, thisyear-1)
+    #ax.set_ylim(0, astropy_fraction[np.isfinite(astropy_fraction)].max()+0.05)
     ax.xaxis.get_major_formatter().set_useOffset(False)
     ax.set_ylabel("Fraction of papers")
     ax.set_xlabel("Year")
